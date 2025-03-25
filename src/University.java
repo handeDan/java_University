@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class University {
@@ -8,6 +10,7 @@ public class University {
     private static University instance;
 
     private List<Faculty> faculties;
+    private Map<Long, Faculty> facultyMap;  //-> id'ye göre arama
 
     private University(){ //String name
         //this.name = name;
@@ -24,11 +27,16 @@ public class University {
     //University university = University.getInstance();
 
     public void addFaculty(Faculty faculty) {
-        if(faculties == null) {
+        /*if(faculties == null) {
             faculties = new ArrayList<>();
-        }
+        } */
+
         if(!faculties.contains(faculty)){
             faculties.add(faculty);
+        }
+
+        if(!facultyMap.containsKey(faculty.getId())) {
+            facultyMap.put(faculty.getId(), faculty);
         }
     }
     //University university = University.getInstance();
@@ -42,5 +50,55 @@ public class University {
                 .collect(Collectors.toUnmodifiableList()); //okunabilir, set edileemez, değiştirilemez.
     }
 
+    public Optional<Faculty> getFacultyById(Long id) {
+        //1. yöntem:
+        // for(Faculty faculty: faculties) {
+        //  if(faculty.getId().equals(id)) {
+        //    return Optional.of(faculty);
+        //}
+        //}
+
+        //2. yöntem: stream api ile
+        faculties.stream()
+                .filter(faculty -> faculty.getId().equals(id))
+                .findFirst();
+
+        return Optional.of(null);
+    }
+
+    public Faculty getFacultyByIdThrowException(Long id) throws FacultyNotFoundException{
+        Optional<Faculty> optionalFaculty =  faculties
+                .stream()
+                .filter(faculty -> faculty.getId().equals(id))
+                .findFirst();
+
+         if(optionalFaculty.isPresent()) {
+            return optionalFaculty.get();
+        } else {
+             throw new FacultyNotFoundException(id + "id'li fakülte bulunamadı.");
+        }
+    }
+
+        //3.yöntem:
+        public Optional<Faculty> getFacultyByIdForAMap(Long id) {
+            return Optional.ofNullable(facultyMap.get(id));
+        }
+
+        // Optional: içi boş da olabilir, için de değer de olabilir..
+        /* Optional<Faculty> optionalFaculty =  getFacultyById(10L);
+        if(optionalFaculty.isPresent()) {
+            Faculty foundFaculty = optionalFaculty.get();
+            System.out.println(optionalFaculty.get());
+            System.out.println("Aranan fakülte bulundu : " + foundFaculty.getName());
+        } else {
+            System.out.println("Fakülte bulunamadı.");
+        } */
+
+    public Optional<Faculty> getFacultyByName(String name) {
+        return faculties
+                .stream()
+                .filter(faculty -> faculty.getName().equalsIgnoreCase(name))
+                .findFirst(); //findFirst(): stream final method
+    }
 
 }

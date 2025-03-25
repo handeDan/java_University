@@ -11,7 +11,7 @@ public class Faculty {
     private String address;
     private String phoneNumber;
 
-    private Set<Department> departments;
+    private Set<Department> departments; // collection a like
 
     public Faculty(Long id, String name, String address, String phoneNumber) {
         this.setId(id);
