@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class University {
@@ -33,7 +30,9 @@ public class University {
         if(!faculties.contains(faculty)){
             faculties.add(faculty);
         }
-
+        if(this.facultyMap == null){
+            this.facultyMap=new HashMap<>();
+        }
         if(!facultyMap.containsKey(faculty.getId())) {
             facultyMap.put(faculty.getId(), faculty);
         }
