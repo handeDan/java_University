@@ -27,10 +27,9 @@ public class University {
     //University university = University.getInstance();
 
     public void addFaculty(Faculty faculty) {
-        /*if(faculties == null) {
+        if(faculties == null) {
             faculties = new ArrayList<>();
-        } */
-
+        }
         if(!faculties.contains(faculty)){
             faculties.add(faculty);
         }
