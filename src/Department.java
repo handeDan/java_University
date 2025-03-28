@@ -1,7 +1,4 @@
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public abstract class Department {
@@ -21,7 +18,7 @@ public abstract class Department {
         this.courseMap = new HashMap<>();
     }
 
-    public abstract List<String> lessonsToLearn();
+    public abstract List<Course> lessonsToLearn();
 
     public Long getId() {
         return id;
@@ -59,6 +56,8 @@ public abstract class Department {
     }
 
     public void addCourse(Course course) {
+        if(!course.getDepartment().equals(this))
+            return;
         courseMap.put(course.getId(), course);
     }
 
@@ -71,5 +70,19 @@ public abstract class Department {
                 .values()
                 .stream()
                 .collect(Collectors.toUnmodifiableSet());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o == this)
+            return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Department department = (Department) o;
+        return department.getId().equals(this.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id);
     }
 }

@@ -8,7 +8,9 @@ public class Architecture extends Department{
     }
 
     @Override
-    public List<String> lessonsToLearn() {
-        return List.of("Technical Drawing", "Autocad", "City Planning");
+    public List<Course> lessonsToLearn() {
+        return getCourseSet()
+                .stream()
+                .toList(); //List.of("Technical Drawing", "Autocad", "City Planning");
     }
 }

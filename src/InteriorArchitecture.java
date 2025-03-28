@@ -8,7 +8,9 @@ public class InteriorArchitecture extends Department{
     }
 
     @Override
-    public List<String> lessonsToLearn() {
-        return List.of("Technical Drawing", "Autocad", "Interior Designing", "Exhibition Design");
+    public List<Course> lessonsToLearn() {
+        return getCourseSet()
+                .stream()
+                .toList(); // List.of("Technical Drawing", "Autocad", "Interior Designing", "Exhibition Design");
     }
 }

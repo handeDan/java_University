@@ -8,7 +8,9 @@ public class SoftwareEngineering extends Department{
     }
 
     @Override
-    public List<String> lessonsToLearn() {
-        return List.of("Java", "Effective Programming", "Algorithms", "C++");
+    public List<Course> lessonsToLearn() {
+        return getCourseSet()
+                .stream()
+                .toList(); //List.of("Java", "Effective Programming", "Algorithms", "C++");
     }
 }

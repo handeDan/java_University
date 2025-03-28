@@ -13,7 +13,9 @@ public class ComputerEngineering extends Department{
 
     @Override
     //override: parent'taki methodu ezme işlemi sağlar.
-    public List<String> lessonsToLearn() {
-        return List.of("Introduction to Programming", "Databases", "Operating Systems");
+    public List<Course> lessonsToLearn() {
+        return getCourseSet()
+                .stream()
+                .toList(); //List.of("Introduction to Programming", "Databases", "Operating Systems");
     }
 }

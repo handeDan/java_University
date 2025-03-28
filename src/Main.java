@@ -12,9 +12,22 @@ public class Main {
         Department architecture = new Architecture(3L, "Architecture",  architectureFaculty);
         Department interiorArchitecture = new InteriorArchitecture(3L, "Interior Architecture", architectureFaculty);
 
+        Course planlama = new Course(1L, "Planlama", "SB101", 5.8, architecture);
+        architecture.addCourse(planlama);
+
         university.addFaculty(engineeringFaculty);
         university.addFaculty(architectureFaculty);
         //engineeringFaculty.addDepartment(softwareEnginnering);
+
+        Course introductionToJava = new Course(1L, "introduction to Java", "CS101", 8.0, softwareEnginnering);
+        Instructor instructor = new Instructor(1L, "Hande", "Dan", 75000.0, false, false);
+
+        introductionToJava.addInstructor(instructor);
+
+        for(Course course: instructor.getCourses()) {
+            System.out.println(course);
+        }
+
 
         System.out.println("University : " + University.NAME);
 
@@ -25,6 +38,10 @@ public class Main {
                 System.out.println("        Department : " + department.getName());
                 System.out.println("              Lessons to Learn : " + department.lessonsToLearn());
 
+                for(Course course : department.getCourseSet()) {
+                    System.out.println("                    Course : " + course);
+
+                }
             }
         }
 
