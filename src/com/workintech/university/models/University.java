@@ -1,9 +1,11 @@
+package com.workintech.university.models;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class University {
 
-    public static final String NAME = "Workintech University"; //const tanımladıklarımızı büyük harfle yazarız.
+    public static final String NAME = "Workintech com.workintech.university.models.University"; //const tanımladıklarımızı büyük harfle yazarız.
     private static University instance;
 
     private List<Faculty> faculties;
@@ -12,7 +14,7 @@ public class University {
     private University(){ //String name
         //this.name = name;
         this.faculties = new ArrayList<>();
-    } //private yaptığımız için diğer class'larda "University university = new University ()" yapamayız.
+    } //private yaptığımız için diğer class'larda "com.workintech.university.models.University university = new com.workintech.university.models.University ()" yapamayız.
 
     public static University getInstance() {
         if(instance == null) {
@@ -20,8 +22,8 @@ public class University {
         }
         return instance;
     }
-    //University.getIntance("Workintech University");
-    //University university = University.getInstance();
+    //com.workintech.university.models.University.getIntance("Workintech com.workintech.university.models.University");
+    //com.workintech.university.models.University university = com.workintech.university.models.University.getInstance();
 
     public void addFaculty(Faculty faculty) {
         if(faculties == null) {
@@ -37,7 +39,7 @@ public class University {
             facultyMap.put(faculty.getId(), faculty);
         }
     }
-    //University university = University.getInstance();
+    //com.workintech.university.models.University university = com.workintech.university.models.University.getInstance();
     //university.addFaculty(faculty)
     //university.getFaculties().add(faculty); : encapsulation'a uymuyor.
 
@@ -50,7 +52,7 @@ public class University {
 
     public Optional<Faculty> getFacultyById(Long id) {
         //1. yöntem:
-        // for(Faculty faculty: faculties) {
+        // for(com.workintech.university.models.Faculty faculty: faculties) {
         //  if(faculty.getId().equals(id)) {
         //    return Optional.of(faculty);
         //}
@@ -64,18 +66,7 @@ public class University {
         return Optional.of(null);
     }
 
-    public Faculty getFacultyByIdThrowException(Long id) throws FacultyNotFoundException{
-        Optional<Faculty> optionalFaculty =  faculties
-                .stream()
-                .filter(faculty -> faculty.getId().equals(id))
-                .findFirst();
 
-         if(optionalFaculty.isPresent()) {
-            return optionalFaculty.get();
-        } else {
-             throw new FacultyNotFoundException(id + "id'li fakülte bulunamadı.");
-        }
-    }
 
         //3.yöntem:
         public Optional<Faculty> getFacultyByIdForAMap(Long id) {
@@ -83,9 +74,9 @@ public class University {
         }
 
         // Optional: içi boş da olabilir, için de değer de olabilir..
-        /* Optional<Faculty> optionalFaculty =  getFacultyById(10L);
+        /* Optional<com.workintech.university.models.Faculty> optionalFaculty =  getFacultyById(10L);
         if(optionalFaculty.isPresent()) {
-            Faculty foundFaculty = optionalFaculty.get();
+            com.workintech.university.models.Faculty foundFaculty = optionalFaculty.get();
             System.out.println(optionalFaculty.get());
             System.out.println("Aranan fakülte bulundu : " + foundFaculty.getName());
         } else {
@@ -99,4 +90,12 @@ public class University {
                 .findFirst(); //findFirst(): stream final method
     }
 
+    //NOTLAR :
+    //List<com.workintech.university.models.Faculty> faculties; : referansa göre
+    //.contains :  equals'ın override edilmesi gerekli
+
+    //Set<com.workintech.university.models.Faculty> faculties;
+    //.contains :  equals'ın ve hashCode'un override edilmesi gerekli (hashCode, equals'a göre yazılmalı)
+
+    //
 }

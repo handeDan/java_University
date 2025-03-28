@@ -1,12 +1,15 @@
+package com.workintech.university.models;
+
 import java.util.Collections;
 import java.util.Objects;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-public class Instructor implements Comparable<Instructor> {
+public abstract class Instructor implements Comparable<Instructor> {
     private Long id;
     private String firstName;
     private String lastName;
+    //private String email;
     private Double salary;
     private Boolean hasMsc;
     private Boolean hasPhd;
@@ -80,9 +83,9 @@ public class Instructor implements Comparable<Instructor> {
     }
 
     public void addCourse(Course course) {
-        /* Course c++ = new Course();
+        /* com.workintech.university.models.Course c++ = new com.workintech.university.models.Course();
         c++.getInstuctors();
-        Instructor instructor = new Instructor();
+        com.workintech.university.models.Instructor instructor = new com.workintech.university.models.Instructor();
         instructor.addCourse(c++);
         c++.getInstructors(); */
 
@@ -91,9 +94,9 @@ public class Instructor implements Comparable<Instructor> {
     }
 
     public void removeCourse(Course course) {
-        /* Course c++ = new Course();
+        /* com.workintech.university.models.Course c++ = new com.workintech.university.models.Course();
         c++.getInstuctors();
-        Instructor instructor = new Instructor();
+        com.workintech.university.models.Instructor instructor = new com.workintech.university.models.Instructor();
         instructor.addCourse(c++);
         instructor.removeCourse(c++);
         c++.getInstructors(); */

@@ -1,3 +1,5 @@
+package com.workintech.university.models;
+
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
@@ -40,7 +42,7 @@ public class Faculty {
 
     public void setId(Long id) {
         if (id < 0) {
-            throw new IllegalArgumentException("Faculty ID 0'dan küçük olamaz."); //runtime exception
+            throw new IllegalArgumentException("com.workintech.university.models.Faculty ID 0'dan küçük olamaz."); //runtime exception
         }
         this.id = id;
     }

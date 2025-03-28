@@ -1,7 +1,9 @@
+package com.workintech.university.models;
+
 import java.util.Arrays;
 import java.util.List;
 
-public class ComputerEngineering extends Department{
+public class ComputerEngineering extends Department {
     private static final String NAME = "Computer Engineering";
     private List<String> programmingLanguagesShouldBeTaught;
 

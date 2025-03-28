@@ -1,3 +1,5 @@
+package com.workintech.university.models;
+
 import java.util.*;
 
 public class Course implements Comparable<Course>{

@@ -1,7 +1,9 @@
+package com.workintech.university.models;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
-public abstract class Department {
+public abstract class Department implements Comparable<Department> { //Comparable: class nesnelerinin sıralanabilir olmasını sağlar
     private Long id;
     private String name;
     private String departmentHead;
@@ -26,7 +28,7 @@ public abstract class Department {
 
     public void setId(Long id) {
         if(id < 0) {
-            throw new IllegalArgumentException("Department ID 0'dan küçük olamaz.");
+            throw new IllegalArgumentException("com.workintech.university.models.Department ID 0'dan küçük olamaz.");
         }
         this.id = id;
     }
@@ -53,6 +55,11 @@ public abstract class Department {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public int compareTo(Department o) {
+        return this.name.compareTo(o.getName()); //A'dan Z'ye sıralar. ters sıralama isteseydik: return o.getName().compareTo(this.name);
     }
 
     public void addCourse(Course course) {
